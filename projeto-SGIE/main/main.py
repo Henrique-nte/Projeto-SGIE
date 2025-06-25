@@ -1,7 +1,7 @@
-import json, datetime
+import datetime
 
 #Importando Funções Lucas
-from funcoes_json import addRegistro, buscarRegistros, buscaFiltroRegistro;
+from funcoes_json import addRegistro, buscarRegistros, buscaFiltroRegistro, validarRegistro
 
 #Importando Funções Henrique
 from funcoes_json import ordenar_estoque, exibir_estoque
@@ -22,28 +22,42 @@ if len(dadosUsuario) != 0:
     addRegistro(vetorRegistros)
 
 # Menu principal
-opcaoUsuario = int(input("=======\n1-Adicionar\n2-Ver registros\n3-Editar\n0-Sair\n===========\nInforme uma opção: "))
+print("=" * 30)
+print("         MENU PRINCIPAL")
+print("=" * 30)
+print("1 - Adicionar")
+print("2 - Ver registros")
+print("3 - Editar")
+print("0 - Sair")
+print("=" * 30)
+opcaoUsuario = int(input("Informe uma opção: "))
 
 while opcaoUsuario != 0:
     match opcaoUsuario:
         case 1:
-            codRegistro = input("Informe um código pro produto: ")
-            nomeRegistro = input("Informe o nome do registro: ")
-            precoRegistro = float(input("Informe o preço do registro: "))
-            categoriaRegistro = input("Informe uma categoria para o registro: ")
-            quantidadeRegistro = int(input("Informe a quantidade do produto: "))
+            validarRegistro = 1
+            while validarRegistro != 0:
+                codRegistro = input("Informe um código pro produto: ")
+                nomeRegistro = input("Informe o nome do registro: ")
+                precoRegistro = float(input("Informe o preço do registro: "))
+                categoriaRegistro = input("Informe uma categoria para o registro: ")
+                quantidadeRegistro = int(input("Informe a quantidade do produto: "))
 
-            novoRegistro = {
-                'codRegistro': codRegistro,
-                'nomeRegistro': nomeRegistro,
-                'precoRegistro': precoRegistro,
-                'categoriaRegistro': categoriaRegistro,
-                'quantidadeRegistro': quantidadeRegistro,
-                'dataRegistro': f"{dataLocal.day}/{dataLocal.month}/{dataLocal.year}"
-            }
+                novoRegistro = {
+                    'codRegistro': codRegistro,
+                    'nomeRegistro': nomeRegistro,
+                    'precoRegistro': precoRegistro,
+                    'categoriaRegistro': categoriaRegistro,
+                    'quantidadeRegistro': quantidadeRegistro,
+                    'dataRegistro': f"{dataLocal.day}/{dataLocal.month}/{dataLocal.year}"
+                }
 
-            vetorRegistros.append(novoRegistro)
-            addRegistro(vetorRegistros)
+                validaRegistro = validarRegistro()
+
+                if validaRegistro == 0:
+                    print("Registro cadastrado com sucesso!")
+                else:
+                    print("Já existe um mesmo registro com o mesmo código.")
 
         case 2:
             dadosUsuario = buscarRegistros()

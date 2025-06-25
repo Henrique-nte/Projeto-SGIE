@@ -49,6 +49,15 @@ def buscaFiltroRegistro(posRegistro):
         with open(CAMINHO_JSON, 'w', encoding='utf-8') as arquvoJson:
             json.dump(dadosJson, arquvoJson, indent=4)
 
+
+def validarRegistro(novoRegistro):
+    registrosUsuario = buscarRegistros()
+    if len(registrosUsuario) != 0:
+        for i in range(len(registrosUsuario)):
+            if registrosUsuario[i]['codRegistro'] == novoRegistro['codRegistro']:
+                return 1
+    return 0
+
 #--------------------------------FIM ÁREA LUCAS HEILER--------------------------------
 
 
@@ -76,7 +85,7 @@ def filtraRegistros(cod):
 
 #--------------------------------ÁREA HENRIQUE S--------------------------------
 
-#ORDENAR ESTQOUE
+#ORDENAR ESTOQOUE
 
 def ordenar_estoque(estoque):
 
