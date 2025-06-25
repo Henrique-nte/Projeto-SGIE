@@ -1,7 +1,7 @@
 import datetime
 
 #Importando Funções Lucas
-from funcoes_json import addRegistro, buscarRegistros, buscaFiltroRegistro, validarRegistro
+from funcoes_json import addRegistro, buscarRegistros, buscaFiltroRegistro, validarRegistro, excluiRegistro
 
 #Importando Funções Henrique
 from funcoes_json import ordenar_estoque, exibir_estoque
@@ -28,6 +28,7 @@ print("=" * 30)
 print("1 - Adicionar")
 print("2 - Ver registros")
 print("3 - Editar")
+print("4 - Excluir registro")
 print("0 - Sair")
 print("=" * 30)
 opcaoUsuario = int(input("Informe uma opção: "))
@@ -87,6 +88,20 @@ while opcaoUsuario != 0:
                     print("Registro não encontrado!")
                 else:    
                     buscaFiltroRegistro(indiceRegistro)
+        case 4:
+            vereficaRegistros = buscarRegistros()
+
+            if len(vereficaRegistros) == 0:
+                print("Você não possui registros")
+            else:
+                codRegistro = input("Informe o código do registro: ")
+                indiceRegistro = filtraRegistros(codRegistro)
+
+                if indiceRegistro == -1:
+                    print("Registro não encontrado!")
+                else:    
+                    excluiRegistro(indiceRegistro)
+            
 
         case _:
             print("Informe uma opção válida!")

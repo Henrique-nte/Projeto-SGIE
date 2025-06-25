@@ -58,6 +58,16 @@ def validarRegistro(novoRegistro):
                 return 1
     return 0
 
+
+def excluiRegistro(indiceRegistro):
+    with open(CAMINHO_JSON, 'r', encoding='utf-8') as arquivoJson:
+        dadosJson = json.load(arquivoJson)
+
+        del dadosJson[indiceRegistro]
+
+        with open(CAMINHO_JSON, 'w', encoding='utf-8') as arquivoJson:
+            json.dump(dadosJson, arquivoJson, indent=4)
+
 #--------------------------------FIM ÁREA LUCAS HEILER--------------------------------
 
 
