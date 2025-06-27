@@ -1,31 +1,27 @@
 import json, datetime
-import os
+
 #Eu pego a data local do usuário
 dataLocal = datetime.datetime.now()
 
-CAMINHO_JSON = os.path.join(os.path.dirname(__file__), 'dados.json')
-
-#--------------------------------ÁREA LUCAS HEILER--------------------------------
-
+urlJson = 'main/json/dados.json'
 
 #Crio uma função que envia esses registros para o meu arquivo JSON
-
 def addRegistro(dados):
-    with open(CAMINHO_JSON, 'w', encoding='utf-8') as arquivoJson:
+    with open(urlJson, 'w', encoding='utf-8') as arquivoJson:
         json.dump(dados, arquivoJson, indent=4)
 
 
 #Crio uma função que resgata os dados existentes desse usuário
 def buscarRegistros():
     try:
-        with open(CAMINHO_JSON, 'r', encoding='utf-8') as arquivoJson:
+        with open(urlJson, 'r', encoding='utf-8') as arquivoJson:
             return json.load(arquivoJson)
     except:
         return []
 
-#Essa função filtra a partir da posição encontrada no filtro do registro
+#Essa função edita a partir do registro especificado pelo usuário
 def buscaFiltroRegistro(posRegistro):
-    with open(CAMINHO_JSON, 'r', encoding='utf-8') as arquvoJson:
+    with open(urlJson, 'r', encoding='utf-8') as arquvoJson:
         dadosJson = json.load(arquvoJson)
         
         print("=============Menu filtro============")
@@ -46,39 +42,32 @@ def buscaFiltroRegistro(posRegistro):
             opFiltrado = int(input("1 - Alterar nome\n2 - Alterar Preço\n3 - Alterar Categoria\n4 - Alterar quantidade\n0 - Sair:"))
         
         dadosJson[posRegistro]['dataRegistro'] = f"{dataLocal.day}/{dataLocal.month}/{dataLocal.year}"
-        with open(CAMINHO_JSON, 'w', encoding='utf-8') as arquvoJson:
+        with open(urlJson, 'w', encoding='utf-8') as arquvoJson:
             json.dump(dadosJson, arquvoJson, indent=4)
 
-
+#Função que valida caso o usuário informa um código ja existente no arquivo json
 def validarRegistro(novoRegistro):
     registrosUsuario = buscarRegistros()
     if len(registrosUsuario) != 0:
         for i in range(len(registrosUsuario)):
             if registrosUsuario[i]['codRegistro'] == novoRegistro['codRegistro']:
-                return 1
-    return 0
+                return 0
+    return 1
 
-
+#Função que exclui o registro a partir no índice escolhido pelo usuário
 def excluiRegistro(indiceRegistro):
-    with open(CAMINHO_JSON, 'r', encoding='utf-8') as arquivoJson:
+    with open(urlJson, 'r', encoding='utf-8') as arquivoJson:
         dadosJson = json.load(arquivoJson)
 
         del dadosJson[indiceRegistro]
 
-        with open(CAMINHO_JSON, 'w', encoding='utf-8') as arquivoJson:
+        with open(urlJson, 'w', encoding='utf-8') as arquivoJson:
             json.dump(dadosJson, arquivoJson, indent=4)
 
-#--------------------------------FIM ÁREA LUCAS HEILER--------------------------------
-
-
-
-#--------------------------------ÁREA VINICIUS--------------------------------
-
-
-#Função Filtrar Registros
+#Função aonde pega o registo a partir do código que o usuário informa
 def filtraRegistros(cod):
     try:
-        with open(CAMINHO_JSON, 'r', encoding='utf-8') as arquivoJson:
+        with open(urlJson, 'r', encoding='utf-8') as arquivoJson:
             dadosJson = json.load(arquivoJson)
             for i in range(len(dadosJson)):
                 if dadosJson[i]['codRegistro'] == cod:
@@ -87,19 +76,26 @@ def filtraRegistros(cod):
     except:
         return []
 
-#--------------------------------FIM ÁREA VINICIUS--------------------------------
+#Função que faz a busca do registro filtrado a partir do tipo da escolha o usuário
+def buscaRegistrosFiltrados(filtroUsuario, tipoEscolhido):
+    try:
+        with open(urlJson, 'r', encoding='utf-8') as arquivoJson:
+            dadosJson = json.load(arquivoJson)
+            vetorRegistrosFiltrados = []
 
+            for i in range(len(dadosJson)):
+                if dadosJson[i][tipoEscolhido].lower() == filtroUsuario:
+                    vetorRegistrosFiltrados.append(dadosJson[i])
+            
+            if len(vetorRegistrosFiltrados) == 0:
+                return 0
+            return vetorRegistrosFiltrados
+    except:
+        return []
 
-
-
-
-#--------------------------------ÁREA HENRIQUE S--------------------------------
-
-#ORDENAR ESTOQOUE
-
+#Função que ordena o estoque
 def ordenar_estoque(estoque):
-
-    print("--CRITÉRIO--")
+    print("Qual ordenação deseja?")
     print("1 - CATEGORIA")
     print("2 - QUANTIDADE")
     print("3 - PRECO")
@@ -124,7 +120,7 @@ def ordenar_estoque(estoque):
         case 4:
             return sorted(estoque, key=lambda item: item["dataRegistro"])
 
-
+#Função para exibir o estoque
 def exibir_estoque(estoque_ordenado):
     print("\n| {:^10} | {:^20} | {:^10} | {:^15} | {:^10} | {:^12} |".format(
         "CÓDIGO", "NOME", "PREÇO", "CATEGORIA", "QTDE", "DATA"
@@ -139,8 +135,3 @@ def exibir_estoque(estoque_ordenado):
             item['quantidadeRegistro'],
             item['dataRegistro']
         ))
-
-
-
-#--------------------------------FIM ÁREA HENRIQUE S--------------------------------
-
