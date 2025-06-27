@@ -1,12 +1,9 @@
 import datetime
 
-#Importando Funções Lucas
-from funcoes_json import addRegistro, buscarRegistros, buscaFiltroRegistro, validarRegistro, excluiRegistro, buscaRegistrosFiltrados
-
-#Importando Funções Henrique
+#Importando Funções 
+from funcoes_json import addRegistro, buscarRegistros, buscaFiltroRegistro
+from funcoes_json import validarRegistro, excluiRegistro, buscaRegistrosFiltrados
 from funcoes_json import ordenar_estoque, exibir_estoque
-
-#Importando Funções Vinicius
 from funcoes_json import filtraRegistros
 
 dataLocal = datetime.datetime.now()
@@ -144,7 +141,7 @@ while opcaoUsuario != 0:
         case _:
             print("Informe uma opção válida!")
 
-    #Menu principal
+    #Menu alternativo
     print("=" * 30)
     print("1 - Adicionar")
     print("2 - Ver registros")
