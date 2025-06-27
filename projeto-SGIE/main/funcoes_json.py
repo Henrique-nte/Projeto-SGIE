@@ -3,7 +3,7 @@ import json, datetime
 #Eu pego a data local do usuário
 dataLocal = datetime.datetime.now()
 
-urlJson = 'main/json/dados.json'
+urlJson = 'projeto-SGIE/main/json/dados.json'
 
 #Crio uma função que envia esses registros para o meu arquivo JSON
 def addRegistro(dados):

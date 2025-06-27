@@ -11,7 +11,7 @@
         "codRegistro": "MON234",
         "nomeRegistro": "Monitor LED 24 Full HD",
         "precoRegistro": 799.0,
-        "categoriaRegistro": "Periféricos",
+        "categoriaRegistro": "Perif\u00e9ricos",
         "quantidadeRegistro": 8,
         "dataRegistro": "25/6/2025"
     },
@@ -25,23 +25,23 @@
     },
     {
         "codRegistro": "MOU456",
-        "nomeRegistro": "Mouse Óptico USB",
+        "nomeRegistro": "Mouse \u00d3ptico USB",
         "precoRegistro": 49.9,
-        "categoriaRegistro": "Periféricos",
+        "categoriaRegistro": "Perif\u00e9ricos",
         "quantidadeRegistro": 30,
         "dataRegistro": "25/6/2025"
     },
     {
         "codRegistro": "KEY321",
-        "nomeRegistro": "Teclado Mecânico RGB",
+        "nomeRegistro": "Teclado Mec\u00e2nico RGB",
         "precoRegistro": 259.0,
-        "categoriaRegistro": "Periféricos",
+        "categoriaRegistro": "Perif\u00e9ricos",
         "quantidadeRegistro": 10,
         "dataRegistro": "25/6/2025"
     },
     {
         "codRegistro": "RAM016",
-        "nomeRegistro": "Memória RAM 16GB DDR4",
+        "nomeRegistro": "Mem\u00f3ria RAM 16GB DDR4",
         "precoRegistro": 349.5,
         "categoriaRegistro": "Hardware",
         "quantidadeRegistro": 20,
@@ -59,7 +59,7 @@
         "codRegistro": "CAB678",
         "nomeRegistro": "Cabo HDMI 2m",
         "precoRegistro": 29.9,
-        "categoriaRegistro": "Acessórios",
+        "categoriaRegistro": "Acess\u00f3rios",
         "quantidadeRegistro": 50,
         "dataRegistro": "25/6/2025"
     }
